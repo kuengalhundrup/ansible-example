@@ -1,12 +1,15 @@
 - hosts: all
+  serial: 1
   gather_facts: false
   tasks:
     - name: install the latest version of Apache
       yum:
         name: httpd
         state: present
+      become: yes
 
     - name: Start service httpd, if not started
       service:
         name: httpd
         state: started
+      become: yes
